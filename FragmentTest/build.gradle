@@ -5,9 +5,9 @@ android {
     buildToolsVersion rootProject.ext.app.buildToolsVersion
 
     defaultConfig {
-        applicationId rootProject.ext.app.applicationId + ".fragmenttest"
+        applicationId rootProject.ext.app.applicationId  //+ ".testfragment"
         minSdkVersion rootProject.ext.app.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        targetSdkVersion rootProject.ext.app.targetSdkVersion
         versionCode rootProject.ext.app.versionCode
         versionName rootProject.ext.app.versionName
     }
@@ -41,12 +41,17 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies.appcompat
+    implementation rootProject.ext.dependencies.material
+    implementation rootProject.ext.dependencies.constraintlayout
     //日志输出
     implementation rootProject.ext.dependencies.timber
-    implementation rootProject.ext.dependencies.constraintlayout
+    implementation rootProject.ext.dependencies.butterknife
+    annotationProcessor rootProject.ext.dependencies.butterknifecompiler
+    //开关 Button
+    implementation rootProject.ext.dependencies.switchbutton
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation "androidx.test.espresso:espresso-core:${dependencies.espressocore}"
+    androidTestImplementation rootProject.ext.dependencies.espressocore
 
 }

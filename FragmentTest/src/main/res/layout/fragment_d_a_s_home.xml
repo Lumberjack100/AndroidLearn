@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#a6a6a6" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+        <include
+                android:id="@+id/bluetooth_connect_layout"
+                layout="@layout/device_config_switchview_item" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+        <include
+                android:id="@+id/device_enable_state_layout"
+                layout="@layout/device_config_switchview_item" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+        <include
+                android:id="@+id/debug_model_layout"
+                layout="@layout/device_config_switchview_item" />
+
+    </LinearLayout>
+
+</ScrollView>

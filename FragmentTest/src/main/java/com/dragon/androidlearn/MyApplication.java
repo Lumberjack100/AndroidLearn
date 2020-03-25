@@ -1,6 +1,8 @@
 package com.dragon.androidlearn;
 
 import android.app.Application;
+import com.dragon.androidlearn.util.CrashReportingTree;
+import timber.log.Timber;
 
 /**
  * 项目名：  AndroidLearn <br/>
@@ -16,7 +18,7 @@ public class MyApplication extends Application
     public void onCreate()
     {
         super.onCreate();
-
+        initTimber();
     }
 
 
@@ -24,11 +26,11 @@ public class MyApplication extends Application
      * 设置日志输出
      */
     private void initTimber() {
-//        Timber.d("initTimber()------in");
-//        if (BuildConfig.DEBUG) {
-//            Timber.plant(new Timber.DebugTree());
-//        } else {
-//            Timber.plant(new CrashReportingTree());
-//        }
+        Timber.d("initTimber()------in");
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        } else {
+            Timber.plant(new CrashReportingTree());
+        }
     }
 }
