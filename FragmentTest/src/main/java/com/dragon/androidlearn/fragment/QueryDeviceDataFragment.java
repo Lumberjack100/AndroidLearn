@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import androidx.fragment.app.Fragment;
+import butterknife.BindView;
 import com.dragon.androidlearn.R;
 
 
@@ -13,6 +15,8 @@ import com.dragon.androidlearn.R;
  */
 public class QueryDeviceDataFragment extends BaseFragment
 {
+    @BindView(R.id.edit_text)
+    EditText editText;
 
     public QueryDeviceDataFragment()
     {

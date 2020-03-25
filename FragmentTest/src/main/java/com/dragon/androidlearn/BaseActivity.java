@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onRestoreInstanceState(state);
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onRestoreInstanceState");
+        Timber.tag("LifeCicleTetst").e(name + "  onRestoreInstanceState" + "  " + this.hashCode());
     }
 
 
@@ -31,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onSaveInstanceState(outState);
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + " onSaveInstanceState");
+        Timber.tag("LifeCicleTetst").e(name + " onSaveInstanceState" + "  " + this.hashCode());
     }
 
 
@@ -43,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onCreate");
+        Timber.tag("LifeCicleTetst").e(name + "  onCreate" + "  " + this.hashCode());
     }
 
     @Override
@@ -51,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onRestart();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onRestart");
+        Timber.tag("LifeCicleTetst").e(name + "  onRestart" + "  " + this.hashCode());
     }
 
     @Override
@@ -59,7 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onStart();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onStart");
+        Timber.tag("LifeCicleTetst").e(name + "  onStart" + "  " + this.hashCode());
     }
 
 
@@ -68,7 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onResume();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onResume");
+        Timber.tag("LifeCicleTetst").e(name + "  onResume" + "  " + this.hashCode());
     }
 
     @Override
@@ -76,7 +76,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onPause();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onPause");
+        Timber.tag("LifeCicleTetst").e(name + "  onPause" + "  " + this.hashCode());
     }
 
     @Override
@@ -84,7 +84,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onStop();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onStop");
+        Timber.tag("LifeCicleTetst").e(name + "  onStop" + "  " + this.hashCode());
     }
 
 
@@ -93,6 +93,6 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onDestroy();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onDestroy");
+        Timber.tag("LifeCicleTetst").e(name + "  onDestroy" + "  " + this.hashCode());
     }
 }

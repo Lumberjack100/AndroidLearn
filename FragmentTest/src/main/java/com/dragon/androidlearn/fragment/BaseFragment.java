@@ -28,7 +28,7 @@ public abstract class BaseFragment extends Fragment
     {
         super.onSaveInstanceState(outState);
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "onSaveInstanceState");
+        Timber.tag("LifeCicleTetst").e(name + "  onSaveInstanceState"+ "  " + this.hashCode());
     }
 
     @Nullable
@@ -39,7 +39,7 @@ public abstract class BaseFragment extends Fragment
         ButterKnife.bind(this, view);
 
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onCreateView");
+        Timber.tag("LifeCicleTetst").e(name + "  onCreateView"+ "  " + this.hashCode());
         return view;
     }
 
@@ -49,15 +49,16 @@ public abstract class BaseFragment extends Fragment
         super.onAttach(context);
         String name = getClass().getSimpleName();
 
-        Timber.tag("LifeCicleTetst").e(name + "  onAttach");
+        Timber.tag("LifeCicleTetst").e(name + "  onAttach"+ "  " + this.hashCode());
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onCreate");
+        Timber.tag("LifeCicleTetst").e(name + "  onCreate" + "  " + this.hashCode());
     }
 
     @Override
@@ -65,7 +66,9 @@ public abstract class BaseFragment extends Fragment
     {
         super.onActivityCreated(savedInstanceState);
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onActivityCreated");
+        Timber.tag("LifeCicleTetst").e(name + "  onActivityCreated"+ "  " + this.hashCode());
+
+//        setRetainInstance(true);
     }
 
     @Override
@@ -74,8 +77,7 @@ public abstract class BaseFragment extends Fragment
         super.onStart();
 
         String name = getClass().getSimpleName();
-//        Timber.tag("LifeCicleTetst").e(name + "  onStart");
-        Log.e("LifeCicleTetst", name + "  Call onStart");
+        Log.e("LifeCicleTetst", name + "  onStart"+ "  " + this.hashCode());
     }
 
 
@@ -84,7 +86,7 @@ public abstract class BaseFragment extends Fragment
     {
         super.onResume();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onResume");
+        Timber.tag("LifeCicleTetst").e(name + "  onResume"+ "  " + this.hashCode());
     }
 
     @Override
@@ -92,7 +94,7 @@ public abstract class BaseFragment extends Fragment
     {
         super.onPause();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onPause");
+        Timber.tag("LifeCicleTetst").e(name + "  onPause"+ "  " + this.hashCode());
     }
 
     @Override
@@ -100,7 +102,7 @@ public abstract class BaseFragment extends Fragment
     {
         super.onStop();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onStop");
+        Timber.tag("LifeCicleTetst").e(name + "  onStop"+ "  " + this.hashCode());
     }
 
 
@@ -109,7 +111,7 @@ public abstract class BaseFragment extends Fragment
     {
         super.onDestroyView();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onDestroyView");
+        Timber.tag("LifeCicleTetst").e(name + "  onDestroyView"+ "  " + this.hashCode());
     }
 
 
@@ -118,7 +120,7 @@ public abstract class BaseFragment extends Fragment
     {
         super.onDestroy();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onDestroy");
+        Timber.tag("LifeCicleTetst").e(name + "  onDestroy"+ "  " + this.hashCode());
     }
 
     @Override
@@ -126,7 +128,7 @@ public abstract class BaseFragment extends Fragment
     {
         super.onDetach();
         String name = getClass().getSimpleName();
-        Timber.tag("LifeCicleTetst").e(name + "  onDetach");
+        Timber.tag("LifeCicleTetst").e(name + "  onDetach"+ "  " + this.hashCode());
     }
 
 }

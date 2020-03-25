@@ -1,5 +1,6 @@
 package com.dragon.androidlearn;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import com.dragon.androidlearn.fragment.DASHomeFragment;
 import com.dragon.androidlearn.fragment.DeviceDetailsFragment;
 import com.dragon.androidlearn.fragment.QueryDeviceDataFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 
 
 public class MainActivity extends BaseActivity
@@ -33,7 +33,8 @@ public class MainActivity extends BaseActivity
 
     private boolean isFirstCall = true;
 
-    public static void startActivity(Context context) {
+    public static void startActivity(Context context)
+    {
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
@@ -49,11 +50,16 @@ public class MainActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
 
+        Activity context = MainActivity.this;
+        int code = this.hashCode();
+
         initView(savedInstanceState);
     }
 
-    private void initView(Bundle savedInstanceState) {
-        if (savedInstanceState != null) {  // “内存重启”时调用
+    private void initView(Bundle savedInstanceState)
+    {
+        if (savedInstanceState != null)
+        {  // “内存重启”时调用
             String curTag = savedInstanceState.getString("CurrentFragment");
             currentFragment = getSupportFragmentManager().findFragmentByTag(curTag);
             DASHomeFragment = (DASHomeFragment) getSupportFragmentManager().findFragmentByTag(DASHomeFragment.class.getName());
@@ -61,27 +67,23 @@ public class MainActivity extends BaseActivity
             deviceDetailsFragment = (DeviceDetailsFragment) getSupportFragmentManager().findFragmentByTag(DeviceDetailsFragment.class.getName());
             advanceSetFragment = (AdvanceSetFragment) getSupportFragmentManager().findFragmentByTag(AdvanceSetFragment.class.getName());
 
-            if(DASHomeFragment==null)
+            if (DASHomeFragment == null)
                 DASHomeFragment = new DASHomeFragment();
 
-            if(queryDataFragment==null)
-                queryDataFragment=new QueryDeviceDataFragment();
+            if (queryDataFragment == null)
+                queryDataFragment = new QueryDeviceDataFragment();
 
-            if(deviceDetailsFragment==null)
+            if (deviceDetailsFragment == null)
                 deviceDetailsFragment = new DeviceDetailsFragment();
 
-            if(advanceSetFragment==null)
+            if (advanceSetFragment == null)
                 advanceSetFragment = new AdvanceSetFragment();
 
             // 解决重叠问题
-            getSupportFragmentManager().beginTransaction()
-                    .hide(DASHomeFragment)
-                    .hide(queryDataFragment)
-                    .hide(deviceDetailsFragment)
-                    .hide(advanceSetFragment)
-                    .show(currentFragment)
-                    .commit();
-        } else {
+            getSupportFragmentManager().beginTransaction().hide(DASHomeFragment).hide(queryDataFragment).hide(deviceDetailsFragment).hide(advanceSetFragment).show(currentFragment).commit();
+        }
+        else
+        {
             DASHomeFragment = new DASHomeFragment();
             queryDataFragment = new QueryDeviceDataFragment();
             deviceDetailsFragment = new DeviceDetailsFragment();
@@ -94,13 +96,16 @@ public class MainActivity extends BaseActivity
     }
 
 
-
-    private void initBottomNavigationItemSelectedListener() {
+    private void initBottomNavigationItemSelectedListener()
+    {
         //为底部导航设置条目选中监听
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
+        {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item)
+            {
+                switch (item.getItemId())
+                {
                     case R.id.item_parameter:
                         mToolbarTitle.setText("参数设置");
                         switchFrgment(0);
@@ -129,8 +134,10 @@ public class MainActivity extends BaseActivity
     /**
      * switch the fragment accordting to id
      */
-    private void switchFrgment(int i) {
-        switch (i) {
+    private void switchFrgment(int i)
+    {
+        switch (i)
+        {
             case 0:
                 showFragment(DASHomeFragment);
                 break;
@@ -146,15 +153,21 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    private void showFragment(Fragment fragment) {
-        if (currentFragment != fragment) {//  判断传入的fragment是不是当前的currentFragmentgit
+    private void showFragment(Fragment fragment)
+    {
+        if (currentFragment != fragment)
+        {//  判断传入的fragment是不是当前的currentFragmentgit
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            if (!fragment.isAdded()) { //  判断传入的fragment是否已经被add()过
+            if (!fragment.isAdded())
+            { //  判断传入的fragment是否已经被add()过
                 transaction.add(R.id.content_frame, fragment, fragment.getClass().getName());
-                if (currentFragment != null) {
+                if (currentFragment != null)
+                {
                     transaction.hide(currentFragment);
                 }
-            } else {
+            }
+            else
+            {
                 transaction.hide(currentFragment).show(fragment);
             }
 
@@ -165,22 +178,28 @@ public class MainActivity extends BaseActivity
 
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState)
+    {
         super.onSaveInstanceState(outState);
+        Activity context = MainActivity.this;
+        int code = this.hashCode();
         outState.putString("CurrentFragment", currentFragment.getClass().getName());
     }
 
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
-        if (isFirstCall) {
+        if (isFirstCall)
+        {
 
         }
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause()
+    {
         super.onPause();
         isFirstCall = false;
     }
