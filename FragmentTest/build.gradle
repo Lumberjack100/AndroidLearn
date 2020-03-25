@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.app.compileSdkVersion
+    buildToolsVersion rootProject.ext.app.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.app.applicationId + ".fragmenttest"
+        minSdkVersion rootProject.ext.app.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.app.versionCode
+        versionName rootProject.ext.app.versionName
+    }
+
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.app.sourceCompatibilityVersion
+        targetCompatibility rootProject.ext.app.targetCompatibilityVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            //是否清理无用资源
+            shrinkResources false
+            //是否启用zipAlign压缩
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
+            //是否清理无用资源
+            shrinkResources false
+            //是否启用zipAlign压缩
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.dependencies.appcompat
+    //日志输出
+    implementation rootProject.ext.dependencies.timber
+    implementation rootProject.ext.dependencies.constraintlayout
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation "androidx.test.espresso:espresso-core:${dependencies.espressocore}"
+
+}

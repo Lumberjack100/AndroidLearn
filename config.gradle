@@ -1,0 +1,23 @@
+ext {
+    app = [
+            appVerCode   : 1,
+            appVerName   : "1.0.0",
+            applicationId: "com.dragon.androidlearn",
+
+            minSdkVersion             : 21,
+            targetSdkVersion          : 29,
+            compileSdkVersion         : 29,
+            buildToolsVersion         : "29.0.3",
+            sourceCompatibilityVersion: JavaVersion.VERSION_1_8,
+            targetCompatibilityVersion: JavaVersion.VERSION_1_8
+    ]
+
+
+    dependencies = [
+            appcompat : 'androidx.appcompat:appcompat:1.1.0',
+            timber      :'com.jakewharton.timber:timber:4.7.1',
+            constraintlayout:'androidx.constraintlayout:constraintlayout:1.1.3'
+    ]
+
+}
+
