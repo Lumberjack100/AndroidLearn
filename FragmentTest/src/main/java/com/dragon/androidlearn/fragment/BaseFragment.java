@@ -29,8 +29,6 @@ public abstract class BaseFragment extends Fragment
         super.onSaveInstanceState(outState);
         String name = getClass().getSimpleName();
         Timber.tag("LifeCicleTetst").e(name + "onSaveInstanceState");
-
-
     }
 
     @Nullable

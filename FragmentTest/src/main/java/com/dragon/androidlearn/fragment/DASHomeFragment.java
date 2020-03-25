@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import butterknife.BindView;
 import com.dragon.androidlearn.R;
+import com.kyleduo.switchbutton.SwitchButton;
 
 
 /**
@@ -13,6 +16,16 @@ import com.dragon.androidlearn.R;
  */
 public class DASHomeFragment extends BaseFragment
 {
+    @BindView(R.id.bluetooth_connect_layout)
+    View bluetoothConnectLayout;
+
+    @BindView(R.id.device_enable_state_layout)
+    View deviceEnableLayout;
+
+
+    private TextView mTvBluetoothConnect, mTvDeviceActivation, mTvBreakAlarm;
+
+    private SwitchButton mSbBluetoothConnect, mSbDeviceActivation, mSbBleakAlarm;
 
     public DASHomeFragment()
     {
@@ -29,9 +42,18 @@ public class DASHomeFragment extends BaseFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view = super.onCreateView(inflater, container, savedInstanceState);
-
+        initView();
         return view;
     }
 
+    private void initView() {
+        ((TextView) bluetoothConnectLayout.findViewById(R.id.tv_config_name)).setText("蓝牙连接");
+        mTvBluetoothConnect = bluetoothConnectLayout.findViewById(R.id.tv_device_state);
+        mSbBluetoothConnect = bluetoothConnectLayout.findViewById(R.id.switchButton);
 
+        ((TextView) deviceEnableLayout.findViewById(R.id.tv_config_name)).setText("设备启用状态");
+        mTvDeviceActivation = deviceEnableLayout.findViewById(R.id.tv_device_state);
+        mSbDeviceActivation = deviceEnableLayout.findViewById(R.id.switchButton);
+
+    }
 }
