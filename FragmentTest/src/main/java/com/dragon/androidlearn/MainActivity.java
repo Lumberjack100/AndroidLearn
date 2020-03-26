@@ -6,19 +6,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import butterknife.BindView;
+
 import com.dragon.androidlearn.fragment.AdvanceSetFragment;
 import com.dragon.androidlearn.fragment.DASHomeFragment;
 import com.dragon.androidlearn.fragment.DeviceDetailsFragment;
 import com.dragon.androidlearn.fragment.QueryDeviceDataFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import butterknife.BindView;
 
-public class MainActivity extends BaseActivity
-{
+
+public class MainActivity extends BaseActivity {
     @BindView(R.id.tv_title)
     TextView mToolbarTitle;
 
@@ -33,21 +35,18 @@ public class MainActivity extends BaseActivity
 
     private boolean isFirstCall = true;
 
-    public static void startActivity(Context context)
-    {
+    public static void startActivity(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 
     @Override
-    protected int initContentView()
-    {
+    protected int initContentView() {
         return R.layout.activity_main;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Activity context = MainActivity.this;
@@ -56,38 +55,40 @@ public class MainActivity extends BaseActivity
         initView(savedInstanceState);
     }
 
-    private void initView(Bundle savedInstanceState)
-    {
-        if (savedInstanceState != null)
-        {  // “内存重启”时调用
+    private void initView(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {  // “内存重启”时调用
             String curTag = savedInstanceState.getString("CurrentFragment");
             currentFragment = getSupportFragmentManager().findFragmentByTag(curTag);
-            DASHomeFragment = (DASHomeFragment) getSupportFragmentManager().findFragmentByTag(DASHomeFragment.class.getName());
-            queryDataFragment = (QueryDeviceDataFragment) getSupportFragmentManager().findFragmentByTag(QueryDeviceDataFragment.class.getName());
-            deviceDetailsFragment = (DeviceDetailsFragment) getSupportFragmentManager().findFragmentByTag(DeviceDetailsFragment.class.getName());
-            advanceSetFragment = (AdvanceSetFragment) getSupportFragmentManager().findFragmentByTag(AdvanceSetFragment.class.getName());
-
-            if (DASHomeFragment == null)
-                DASHomeFragment = new DASHomeFragment();
-
-            if (queryDataFragment == null)
-                queryDataFragment = new QueryDeviceDataFragment();
-
-            if (deviceDetailsFragment == null)
-                deviceDetailsFragment = new DeviceDetailsFragment();
-
-            if (advanceSetFragment == null)
-                advanceSetFragment = new AdvanceSetFragment();
-
-            // 解决重叠问题
-            getSupportFragmentManager().beginTransaction().hide(DASHomeFragment).hide(queryDataFragment).hide(deviceDetailsFragment).hide(advanceSetFragment).show(currentFragment).commit();
-        }
-        else
-        {
-            DASHomeFragment = new DASHomeFragment();
-            queryDataFragment = new QueryDeviceDataFragment();
-            deviceDetailsFragment = new DeviceDetailsFragment();
-            advanceSetFragment = new AdvanceSetFragment();
+//            DASHomeFragment = (DASHomeFragment) getSupportFragmentManager().findFragmentByTag(DASHomeFragment.class.getName());
+//            queryDataFragment = (QueryDeviceDataFragment) getSupportFragmentManager().findFragmentByTag(QueryDeviceDataFragment.class.getName());
+//            deviceDetailsFragment = (DeviceDetailsFragment) getSupportFragmentManager().findFragmentByTag(DeviceDetailsFragment.class.getName());
+//            advanceSetFragment = (AdvanceSetFragment) getSupportFragmentManager().findFragmentByTag(AdvanceSetFragment.class.getName());
+//
+//            if (DASHomeFragment == null)
+//                DASHomeFragment = new DASHomeFragment();
+//
+//            if (queryDataFragment == null)
+//                queryDataFragment = new QueryDeviceDataFragment();
+//
+//            if (deviceDetailsFragment == null)
+//                deviceDetailsFragment = new DeviceDetailsFragment();
+//
+//            if (advanceSetFragment == null)
+//                advanceSetFragment = new AdvanceSetFragment();
+//
+//            // 解决重叠问题
+//            getSupportFragmentManager().beginTransaction()
+//                    .hide(DASHomeFragment)
+//                    .hide(queryDataFragment)
+//                    .hide(deviceDetailsFragment)
+//                    .hide(advanceSetFragment)
+//                    .show(currentFragment)
+//                    .commit();
+        } else {
+//            DASHomeFragment = new DASHomeFragment();
+//            queryDataFragment = new QueryDeviceDataFragment();
+//            deviceDetailsFragment = new DeviceDetailsFragment();
+//            advanceSetFragment = new AdvanceSetFragment();
 
             switchFrgment(0);
         }
@@ -96,16 +97,12 @@ public class MainActivity extends BaseActivity
     }
 
 
-    private void initBottomNavigationItemSelectedListener()
-    {
+    private void initBottomNavigationItemSelectedListener() {
         //为底部导航设置条目选中监听
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
-        {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)
-            {
-                switch (item.getItemId())
-                {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
                     case R.id.item_parameter:
                         mToolbarTitle.setText("参数设置");
                         switchFrgment(0);
@@ -134,40 +131,53 @@ public class MainActivity extends BaseActivity
     /**
      * switch the fragment accordting to id
      */
-    private void switchFrgment(int i)
-    {
-        switch (i)
-        {
+    private void switchFrgment(int i) {
+        switch (i) {
             case 0:
-                showFragment(DASHomeFragment);
+                if(DASHomeFragment==null)
+                    DASHomeFragment=new DASHomeFragment();
+//                showFragment(DASHomeFragment);
+                switchFragment(DASHomeFragment);
                 break;
             case 1:
-                showFragment(queryDataFragment);
+                if(queryDataFragment==null)
+                    queryDataFragment=new QueryDeviceDataFragment();
+//                showFragment(queryDataFragment);
+                switchFragment(queryDataFragment);
+
+//                getSupportFragmentManager().beginTransaction()
+//                        .remove( DASHomeFragment)
+//                        .commit();
+//
+//                getSupportFragmentManager().beginTransaction()
+//                        .add(R.id.content_frame, queryDataFragment, queryDataFragment.getClass().getName()) // 替换Fragment，实现切换
+//                        .addToBackStack(null)
+//                        .commit();
                 break;
             case 2:
-                showFragment(deviceDetailsFragment);
+                if(deviceDetailsFragment==null)
+                    deviceDetailsFragment=new DeviceDetailsFragment();
+//                showFragment(deviceDetailsFragment);
+                switchFragment(deviceDetailsFragment);
                 break;
             case 3:
-                showFragment(advanceSetFragment);
+                if(advanceSetFragment==null)
+                    advanceSetFragment=new AdvanceSetFragment();
+//                showFragment(advanceSetFragment);
+                switchFragment(advanceSetFragment);
                 break;
         }
     }
 
-    private void showFragment(Fragment fragment)
-    {
-        if (currentFragment != fragment)
-        {//  判断传入的fragment是不是当前的currentFragmentgit
+    private void showFragment(Fragment fragment) {
+        if (currentFragment != fragment) {//  判断传入的fragment是不是当前的currentFragmentgit
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            if (!fragment.isAdded())
-            { //  判断传入的fragment是否已经被add()过
+            if (!fragment.isAdded()) { //  判断传入的fragment是否已经被add()过
                 transaction.add(R.id.content_frame, fragment, fragment.getClass().getName());
-                if (currentFragment != null)
-                {
+                if (currentFragment != null) {
                     transaction.hide(currentFragment);
                 }
-            }
-            else
-            {
+            } else {
                 transaction.hide(currentFragment).show(fragment);
             }
 
@@ -176,10 +186,20 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    public void switchFragment(Fragment fragment) {
+        if(currentFragment != fragment) {
+            currentFragment = fragment;
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, fragment, fragment.getClass().getName()) // 替换Fragment，实现切换
+//                    .addToBackStack(null)
+                    .commit();
+
+        }
+    }
+
 
     @Override
-    protected void onSaveInstanceState(Bundle outState)
-    {
+    protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Activity context = MainActivity.this;
         int code = this.hashCode();
@@ -188,18 +208,15 @@ public class MainActivity extends BaseActivity
 
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
-        if (isFirstCall)
-        {
+        if (isFirstCall) {
 
         }
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         isFirstCall = false;
     }
