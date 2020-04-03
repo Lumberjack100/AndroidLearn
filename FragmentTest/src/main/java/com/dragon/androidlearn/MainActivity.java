@@ -48,7 +48,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Activity context = MainActivity.this;
         int code = this.hashCode();
 
